@@ -10,10 +10,12 @@ public class Runner
 {
     public static void main(String[] args)
     {
+        //Should move into UI.java
         Scanner sc = new Scanner(System.in);
 
-        Viewer.printLine("Please input a word:");
-        Viewer.print("> ");
+        UI.showGetWord();
+
+        //Should move into UI.java
         String input = sc.nextLine();
         Asker asker = new Asker();
         asker.setWord(input);
@@ -22,11 +24,10 @@ public class Runner
 
         while (game.getGuesser().getLives() > 0 && game.getNumUncovered() < game.getAsker().getWord().length())
         {
-            Viewer.printLine("Game word is:");
-            Viewer.printLine(game.getCoveredWord());
-            Viewer.printLine("");
-            Viewer.printLine("Please input a single character guess:");
-            Viewer.print("> ");
+            UI.showCoveredWord();
+            UI.printLine(game.getCoveredWord());
+            UI.showInputGuess();
+
             String userInput = sc.nextLine();
             Character userGuess = userInput.charAt(0);
             //Get current number matched indices
@@ -38,33 +39,20 @@ public class Runner
             if (game.getNumUncovered() == currentUncoveredCount)
             {
                 game.getGuesser().loseLife();
-                Viewer.printLine("Guesser lost a life!");
-                Viewer.printLine(String.format("Guesser has %d lives.", guesser.getLives()));
-                Viewer.printLine("");
+                UI.showLoseLife();
+                UI.showLives(guesser.getLives());
             }
         }
 
         if(game.getGuesser().getLives() > 0)
         {
-            Viewer.printLine("You won!");
-            Viewer.printLine(String.format("The word was: %s", game.getAsker().getWord()));
-            Viewer.printLine("You guessed:");
-            for(Character character : game.getGuesser().getGuesses())
-            {
-                Viewer.printLine(character.toString());
-            }
-            Viewer.printLine("");
+            UI.showWon(game.getAsker().getWord());
+            UI.showGuessed(game.getGuesser().getGuesses());
         }
         else
         {
-            Viewer.printLine("You lost!");
-            Viewer.printLine(String.format("The word was: %s", game.getAsker().getWord()));
-            Viewer.printLine("You guessed:");
-            for(Character character : game.getGuesser().getGuesses())
-            {
-                Viewer.printLine(character.toString());
-            }
-            Viewer.printLine("");
+            UI.showLost(game.getAsker().getWord());
+            UI.showGuessed(game.getGuesser().getGuesses());
         }
     }
 
