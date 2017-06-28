@@ -3,6 +3,8 @@ package example.codeclan.com.hangman;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -16,17 +18,28 @@ public class TestGame
     private Guesser guesser;
 
     @Before
-    public void before(){
+    public void before()
+    {
         this.asker = new Asker();
         this.guesser = new Guesser();
         this.game = new Game(asker, guesser);
     }
 
     @Test
-    public void getUncoveredWord(){
+    public void testGetUncoveredWord()
+    {
         game.getAsker().setWord("Test");
         assertEquals("****", game.coveredWord());
     }
 
+    @Test
+    public void testHalfUncoveredWord()
+    {
+        game.getAsker().setWord("Test");
 
+        game.getGuesser().addGuess('e');
+        game.getGuesser().addGuess('s');
+
+        assertEquals("*es*", game.coveredWord());
+    }
 }

@@ -31,4 +31,9 @@ public class Guesser
     {
         return guesses;
     }
+
+    public void addGuess(char guess)
+    {
+        guesses.add(guess);
+    }
 }
