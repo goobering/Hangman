@@ -1,6 +1,7 @@
 package example.codeclan.com.hangman;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Created by user on 28/06/2017.
@@ -27,9 +28,12 @@ public class Game
         return guesser;
     }
 
+    //Need a method to check for duplicate entries!
+
+
     private ArrayList<Integer> getUncoveredIndices()
     {
-        ArrayList<Integer> uncovered = new ArrayList<Integer>();
+        HashSet<Integer> uncovered = new HashSet<Integer>();
         for (Character character : guesser.getGuesses())
         {
             for (Integer integer : asker.getIndices(character))
@@ -38,7 +42,12 @@ public class Game
             }
         }
 
-        return uncovered;
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        for(Integer integer : uncovered)
+        {
+            result.add(integer);
+        }
+        return result;
     }
 
     public int getNumUncovered()
