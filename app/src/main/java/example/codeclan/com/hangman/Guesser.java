@@ -14,6 +14,7 @@ public class Guesser
     public Guesser()
     {
         lives = 6;
+        guesses = new ArrayList<Character>();
     }
 
     public int getLives()

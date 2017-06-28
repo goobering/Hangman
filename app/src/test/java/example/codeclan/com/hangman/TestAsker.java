@@ -31,7 +31,7 @@ public class TestAsker
     @Test
     public void testGetIndices()
     {
-        asker.setWord("Test");
+        asker.setWord("Tesst");
 
         ArrayList<Character> guesses = new ArrayList<Character>();
         guesses.add('a');
@@ -41,9 +41,11 @@ public class TestAsker
         guesses.add('s');
 
         ArrayList<Integer> expected = new ArrayList<Integer>();
-        expected.add(1);
         expected.add(2);
+        expected.add(3);
 
-        assertEquals(expected, asker.getIndices(guesses));
+        char guess = 's';
+
+        assertEquals(expected, asker.getIndices(guess));
     }
 }
