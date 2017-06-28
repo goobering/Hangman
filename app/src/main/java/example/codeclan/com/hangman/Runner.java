@@ -10,6 +10,7 @@ public class Runner
 {
     public static void main(String[] args)
     {
+        String alan = "Alan was here!";
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Please input a word:");
