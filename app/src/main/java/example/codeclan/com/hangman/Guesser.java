@@ -36,4 +36,9 @@ public class Guesser
     {
         guesses.add(guess);
     }
+
+    public int getNumGuesses()
+    {
+        return guesses.size();
+    }
 }

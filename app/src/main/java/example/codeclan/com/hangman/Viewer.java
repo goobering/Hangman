@@ -6,4 +6,13 @@ package example.codeclan.com.hangman;
 
 public class Viewer
 {
+    public static void print(String string)
+    {
+        System.out.print(string);
+    }
+
+    public static void printLine(String string)
+    {
+        System.out.println(string);
+    }
 }
