@@ -14,4 +14,14 @@ public class Game
         this.asker = asker;
         this.guesser = guesser;
     }
+
+    public Asker getAsker()
+    {
+        return asker;
+    }
+
+    public Guesser getGuesser()
+    {
+        return guesser;
+    }
 }
