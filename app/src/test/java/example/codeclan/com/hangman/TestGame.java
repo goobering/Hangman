@@ -16,17 +16,28 @@ public class TestGame
     private Guesser guesser;
 
     @Before
-    public void before(){
+    public void before()
+    {
         this.asker = new Asker();
         this.guesser = new Guesser();
         this.game = new Game(asker, guesser);
     }
 
     @Test
-    public void getUncoveredWord(){
+    public void testGetUncoveredWord()
+    {
         game.getAsker().setWord("Test");
-        assertEquals("****", game.coveredWord());
+        assertEquals("****", game.getCoveredWord());
     }
 
+    @Test
+    public void testHalfUncoveredWord()
+    {
+        game.getAsker().setWord("Test");
 
+        game.getGuesser().addGuess('e');
+        game.getGuesser().addGuess('s');
+
+        assertEquals("*es*", game.getCoveredWord());
+    }
 }

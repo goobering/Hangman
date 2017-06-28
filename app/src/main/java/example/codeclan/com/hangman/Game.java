@@ -27,21 +27,32 @@ public class Game
         return guesser;
     }
 
-    public String coveredWord(){
+    private ArrayList<Integer> getUncoveredIndices()
+    {
         ArrayList<Integer> uncovered = new ArrayList<Integer>();
-        for (Character character : guesser.getGuesses()){
-           for (Integer integer : asker.getIndices(character)){
-            uncovered.add(integer);
-           }
+        for (Character character : guesser.getGuesses())
+        {
+            for (Integer integer : asker.getIndices(character))
+            {
+                uncovered.add(integer);
+            }
         }
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < asker.getWord().length(); i ++){
-            sb.append('*');}
-        for (Integer guessInt : uncovered){
-            sb.setCharAt(guessInt, asker.getWord().charAt(guessInt));
-        }
-        return sb.toString();
+
+        return uncovered;
     }
 
+    public int getNumUncovered()
+    {
+        return getUncoveredIndices().size();
+    }
+
+    public String getCoveredWord()
+    {
+        ArrayList<Integer> uncoveredIndices = getUncoveredIndices();
+        StringBuilder sb = new StringBuilder(asker.getCoveredWord());
+        String uncoveredWord = asker.getUncoveredWord(uncoveredIndices);
+
+        return uncoveredWord;
+    }
 
 }
