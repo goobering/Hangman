@@ -8,9 +8,9 @@ public enum ScriptLine
 {
     PROMPT("> "),
     BLANKLINE(""),
-    GETWORD("Please input a word:"),
+    GETWORD("Please input a word (will be converted to lower case):"),
     WORDIS("Game word is:"),
-    GETCHAR("Please input a single character guess (only first character is used):"),
+    GETCHAR("Please input a single character guess (lower case/only first character is used):"),
     LOSTLIFE("Guesser lost a life!"),
     LIVESLEFT("Lives left: "),
     WON("You won!"),

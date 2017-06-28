@@ -18,7 +18,7 @@ public class Runner
         //Should move into UI.java
         String input = sc.nextLine();
         Asker asker = new Asker();
-        asker.setWord(input);
+        asker.setWord(input.toLowerCase());
         Guesser guesser = new Guesser();
         Game game = new Game(asker, guesser);
 
@@ -28,7 +28,7 @@ public class Runner
             UI.printLine(game.getCoveredWord());
             UI.showInputGuess();
 
-            String userInput = sc.nextLine();
+            String userInput = sc.nextLine().toLowerCase();
             Character userGuess = userInput.charAt(0);
             //Get current number matched indices
             int currentUncoveredCount = game.getNumUncovered();
