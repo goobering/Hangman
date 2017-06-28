@@ -2,6 +2,7 @@ package example.codeclan.com.hangman;
 
 import java.util.ArrayList;
 import java.util.PriorityQueue;
+import java.util.Scanner;
 
 import example.codeclan.com.hangman.enums.ScriptLine;
 import example.codeclan.com.hangman.enums.Stickman;
@@ -12,6 +13,57 @@ import example.codeclan.com.hangman.enums.Stickman;
 
 public class UI
 {
+    //Taken from: https://stackoverflow.com/a/12885952
+    private static boolean containsNonAlphabet(String s)
+    {
+        return (s == null) ? false : s.matches("[^A-Za-z]");
+    }
+
+    public static String getWord()
+    {
+        Scanner sc = new Scanner(System.in);
+        String input = "";
+
+        while (true)
+        {
+            input = sc.nextLine();
+            if (input.length() == 0 || containsNonAlphabet(input))
+            {
+                Viewer.printLine(ScriptLine.NOWORDERROR.getScriptLine());
+                continue;
+            }
+            break;
+        }
+        return input;
+    }
+
+    public static Character getCharacter()
+    {
+        Scanner sc = new Scanner(System.in);
+        String input = "";
+
+        while (true)
+        {
+            input = sc.nextLine();
+            if (input.length() != 1 || containsNonAlphabet(input))
+            {
+                Viewer.printLine(ScriptLine.NOCHARERROR.getScriptLine());
+                Viewer.print(ScriptLine.PROMPT.getScriptLine());
+                continue;
+            }
+            break;
+        }
+
+        return input.charAt(0);
+    }
+
+    public static void showGetChar()
+    {
+        Viewer.printLine(ScriptLine.BLANKLINE.getScriptLine());
+        Viewer.printLine(ScriptLine.GETCHAR.getScriptLine());
+        Viewer.print(ScriptLine.PROMPT.getScriptLine());
+    }
+
     public static void showGetWord()
     {
         Viewer.printLine(ScriptLine.GETWORD.getScriptLine());
@@ -26,13 +78,6 @@ public class UI
     public static void printLine(String string)
     {
         Viewer.printLine(string);
-    }
-
-    public static void showInputGuess()
-    {
-        Viewer.printLine(ScriptLine.BLANKLINE.getScriptLine());
-        Viewer.printLine(ScriptLine.GETCHAR.getScriptLine());
-        Viewer.print(ScriptLine.PROMPT.getScriptLine());
     }
 
     public static void showLoseLife()
@@ -50,7 +95,7 @@ public class UI
     public static void showGuessed(ArrayList<Character> guesses)
     {
         Viewer.printLine(ScriptLine.YOUGUESSED.getScriptLine());
-        for(Character character : guesses)
+        for (Character character : guesses)
         {
             Viewer.printLine(character.toString());
         }
@@ -66,7 +111,7 @@ public class UI
 
     public static void showLives(int lives)
     {
-        switch(lives)
+        switch (lives)
         {
             case 6:
                 Viewer.printLine(Stickman.SIX.getStickman());

@@ -10,13 +10,8 @@ public class Runner
 {
     public static void main(String[] args)
     {
-        //Should move into UI.java
-        Scanner sc = new Scanner(System.in);
-
         UI.showGetWord();
-
-        //Should move into UI.java
-        String input = sc.nextLine();
+        String input = UI.getWord();
         Asker asker = new Asker();
         asker.setWord(input.toLowerCase());
         Guesser guesser = new Guesser();
@@ -26,10 +21,9 @@ public class Runner
         {
             UI.showCoveredWord();
             UI.printLine(game.getCoveredWord());
-            UI.showInputGuess();
 
-            String userInput = sc.nextLine().toLowerCase();
-            Character userGuess = userInput.charAt(0);
+            UI.showGetChar();
+            Character userGuess = UI.getCharacter();
             //Get current number matched indices
             int currentUncoveredCount = game.getNumUncovered();
             //Get number of indices after guess

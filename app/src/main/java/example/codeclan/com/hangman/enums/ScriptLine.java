@@ -8,15 +8,16 @@ public enum ScriptLine
 {
     PROMPT("> "),
     BLANKLINE(""),
-    GETWORD("Please input a word (will be converted to lower case):"),
+    GETWORD("Please input a word - lower case alphabet only:"),
+    GETCHAR("Please input a character - lower case alphabet only:"),
     WORDIS("Game word is:"),
-    GETCHAR("Please input a single character guess (lower case/only first character is used):"),
     LOSTLIFE("Guesser lost a life!"),
-    LIVESLEFT("Lives left: "),
     WON("You won!"),
     LOST("You lost!"),
     YOUGUESSED("You guessed:"),
-    WORDWAS("The word was:");
+    WORDWAS("The word was:"),
+    NOWORDERROR("Please input a single word - no numbers, punctuation or spaces please!"),
+    NOCHARERROR("Please input a single character - no numbers, punctuation or spaces please!");
 
     private String scriptLine;
 

@@ -31,9 +31,12 @@ public class Game
     //Need a method to check for duplicate entries!
 
 
+    //Gets the indices of all characters successfully guessed by the Guesser
     private ArrayList<Integer> getUncoveredIndices()
     {
+        //Using a HashSet here to prevent duplicates
         HashSet<Integer> uncovered = new HashSet<Integer>();
+
         for (Character character : guesser.getGuesses())
         {
             for (Integer integer : asker.getIndices(character))
