@@ -17,7 +17,8 @@ public enum ScriptLine
     YOUGUESSED("You guessed:"),
     WORDWAS("The word was:"),
     NOWORDERROR("Please input a single word - no numbers, punctuation or spaces please!"),
-    NOCHARERROR("Please input a single character - no numbers, punctuation or spaces please!");
+    NOCHARERROR("Please input a single character - no numbers, punctuation or spaces please!"),
+    DUPECHARERROR("You've already guessed that one - try again!");
 
     private String scriptLine;
 

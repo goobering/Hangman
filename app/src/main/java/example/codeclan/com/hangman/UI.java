@@ -1,7 +1,6 @@
 package example.codeclan.com.hangman;
 
 import java.util.ArrayList;
-import java.util.PriorityQueue;
 import java.util.Scanner;
 
 import example.codeclan.com.hangman.enums.ScriptLine;
@@ -14,9 +13,9 @@ import example.codeclan.com.hangman.enums.Stickman;
 public class UI
 {
     //Taken from: https://stackoverflow.com/a/12885952
-    private static boolean containsNonAlphabet(String s)
+    private static boolean containsNonLowerAlphabet(String s)
     {
-        return (s == null) ? false : s.matches("[^A-Za-z]");
+        return (s == null) ? false : s.matches("[^a-z]");
     }
 
     public static String getWord()
@@ -27,7 +26,7 @@ public class UI
         while (true)
         {
             input = sc.nextLine();
-            if (input.length() == 0 || containsNonAlphabet(input))
+            if (input.length() == 0 || containsNonLowerAlphabet(input))
             {
                 Viewer.printLine(ScriptLine.NOWORDERROR.getScriptLine());
                 continue;
@@ -37,7 +36,19 @@ public class UI
         return input;
     }
 
-    public static Character getCharacter()
+    public static boolean containsCharacters(String string, ArrayList<Character> characters)
+    {
+        for(Character character : characters)
+        {
+            if(string.contains(character.toString()))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Character getCharacter(ArrayList<Character> guesses)
     {
         Scanner sc = new Scanner(System.in);
         String input = "";
@@ -45,9 +56,15 @@ public class UI
         while (true)
         {
             input = sc.nextLine();
-            if (input.length() != 1 || containsNonAlphabet(input))
+            if (input.length() != 1 || containsNonLowerAlphabet(input))
             {
                 Viewer.printLine(ScriptLine.NOCHARERROR.getScriptLine());
+                Viewer.print(ScriptLine.PROMPT.getScriptLine());
+                continue;
+            }
+            else if(containsCharacters(input, guesses))
+            {
+                Viewer.printLine(ScriptLine.DUPECHARERROR.getScriptLine());
                 Viewer.print(ScriptLine.PROMPT.getScriptLine());
                 continue;
             }

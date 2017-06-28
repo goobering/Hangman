@@ -18,16 +18,6 @@ public class Game
         this.guesser = guesser;
     }
 
-    public Asker getAsker()
-    {
-        return asker;
-    }
-
-    public Guesser getGuesser()
-    {
-        return guesser;
-    }
-
     //Need a method to check for duplicate entries!
 
 
@@ -67,4 +57,33 @@ public class Game
         return uncoveredWord;
     }
 
+    public int getLives()
+    {
+        return guesser.getLives();
+    }
+
+    public int getAskerWordLength()
+    {
+        return asker.getWord().length();
+    }
+
+    public String getWord()
+    {
+        return asker.getWord();
+    }
+
+    public void addGuess(Character guess)
+    {
+        guesser.addGuess(guess);
+    }
+
+    public void loseLife()
+    {
+        guesser.loseLife();
+    }
+
+    public ArrayList<Character> getGuesses()
+    {
+        return guesser.getGuesses();
+    }
 }
