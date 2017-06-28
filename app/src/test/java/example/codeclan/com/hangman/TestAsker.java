@@ -48,4 +48,12 @@ public class TestAsker
 
         assertEquals(expected, asker.getIndices(guess));
     }
+
+    @Test
+    public void canGetUncoveredWord(){
+
+
+    }
+
+
 }
